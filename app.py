@@ -5,7 +5,12 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import warnings
+import os
 warnings.filterwarnings("ignore")
+
+# Resolve CSV path relative to this script (works locally AND on Streamlit Cloud)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_PATH = os.path.join(BASE_DIR, "Insurance__1_.csv")
 
 # ── Page Config ──────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -69,7 +74,7 @@ st.markdown("""
 # ── Data Loading & Cleaning ───────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv("Insurance__1_.csv")
+    df = pd.read_csv(CSV_PATH)
     # Clean money columns
     for col in ["SUM_ASSURED", "PI_ANNUAL_INCOME"]:
         df[col] = df[col].astype(str).str.replace(",", "").str.strip()
@@ -918,3 +923,4 @@ st.markdown(
     "<center><small>Insurance Claims Bias Detection Dashboard &nbsp;|&nbsp; Built with Streamlit & Plotly &nbsp;|&nbsp; Data is anonymised</small></center>",
     unsafe_allow_html=True
 )
+
