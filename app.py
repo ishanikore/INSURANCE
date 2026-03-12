@@ -923,4 +923,3 @@ st.markdown(
     "<center><small>Insurance Claims Bias Detection Dashboard &nbsp;|&nbsp; Built with Streamlit & Plotly &nbsp;|&nbsp; Data is anonymised</small></center>",
     unsafe_allow_html=True
 )
-
